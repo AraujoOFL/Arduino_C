@@ -1,0 +1,62 @@
+int buttonPin1 = 5;
+int ledPin1= 2;
+int buttonPin2 = 6;
+int ledPin2= 3;
+int estadoButton=0;
+int aux= 0;
+
+void setup() {
+  // put your setup code here, to run once:
+pinMode(ledPin1, OUTPUT);
+pinMode(buttonPin1, INPUT);
+pinMode(ledPin2, OUTPUT);
+pinMode(buttonPin2, INPUT);
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+estadoButton == digitalRead(buttonPin1);
+Serial.println(estadoButton);
+
+
+estadoButton == digitalRead(buttonPin2);
+Serial.println(estadoButton);
+
+
+if (estadoButton == HIGH && aux == 0)
+{
+    digitalWrite(ledPin1, HIGH);
+    aux= 1;
+}
+else if(estadoButton == LOW	 && aux == 1)
+{
+  aux = 2;
+}
+else if(estadoButton == HIGH && aux ==2)
+{digitalWrite(ledPin1, LOW);
+aux = 3;
+}
+else if(estadoButton == LOW && aux ==3)
+aux = 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

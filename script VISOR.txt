@@ -1,0 +1,42 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+int sensor=A0;
+int memoria;
+
+void setup() {
+
+  Serial.begin(9600);
+  pinMode(sensor, INPUT);
+  lcd.begin(16, 2);
+  lcd.setCursor(1, 0);
+  lcd.print(" SENAI,TOLEDO");
+  delay(200);
+  lcd.setCursor(5,1);
+  lcd.print("Sistemas");
+  delay(5000);
+  lcd.clear();
+}
+
+void loop() {
+ memoria=analogRead(sensor);
+ lcd.scrollDisplayLeft();
+ lcd.setCursor(5,0);
+ lcd.print("lux=");
+  lcd.setCursor(9,0);
+ lcd.print(memoria);
+ delay(400);
+  lcd.clear();
+
+if  (memoria>600){
+  lcd.setCursor(4,1);
+ lcd.print("esta claro");  
+}
+else if  (memoria<400){
+  lcd.setCursor(4,1);
+ lcd.print("esta escuro");  
+}
+else {
+  lcd.setCursor(1,1);
+ lcd.print("esta escurecendo");  
+}
+}

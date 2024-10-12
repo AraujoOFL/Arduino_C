@@ -1,0 +1,74 @@
+int button1 = 5;
+int led1 = 2;
+int button2 = 6;
+int aux1 = 0;
+int aux2 = 0;
+int aux3 = 0;
+int estadobutton1 = 0;
+int estadobutton2 = 0;
+
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(button1, INPUT);
+  pinMode(led1, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  estadobutton1 = digitalRead(button1);
+  estadobutton2 = digitalRead(button2);
+
+//ligar
+  if((estadobutton1 && estadobutton2 == 1) && aux1 == 0)
+    {
+      aux1 == aux2;
+     digitalWrite(led1, HIGH);
+    }
+    
+  else if((estadobutton1 && estadobutton2 == 0) && aux3 == 1)
+  {
+    digitalWrite(led1, HIGH);
+    aux3 = 1;
+  }
+
+//desligar
+if ((estadobutton1 == HIGH); aux1 == 0)
+{
+    digitalWrite(led1, LOW);
+    aux1= 0;
+}
+else if ((estadobutton2 == HIGH); aux1 == 0)
+{
+    digitalWrite(led1, LOW);
+    aux1= 0;
+}
+
+
+//ficar ligado  
+     aux3 ++;
+
+estadobutton1 == digitalRead(button1);
+Serial.println(estadobutton1);
+estadobutton2 == digitalRead(button2);
+Serial.println(estadobutton2);
+
+
+if (estadobutton1 == HIGH && aux3 == 0)
+{
+    digitalWrite(led1, HIGH);
+    aux3= 1;
+}
+else if(estadobutton1 == LOW && aux3 == 1)
+{
+  aux3 = 2;
+}
+else if(estadobutton1 == HIGH && aux3 ==2)
+{digitalWrite(led1, LOW);
+aux3 = 3;
+}
+else if(estadobutton1 == LOW && aux3 ==3)
+aux3 = 0;
+}
+
+

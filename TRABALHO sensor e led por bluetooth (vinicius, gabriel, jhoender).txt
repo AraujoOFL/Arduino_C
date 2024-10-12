@@ -1,0 +1,60 @@
+#include <Arduino.h>
+int sensor=0;
+int var =0;
+int var1 =0;
+int var2= 0;
+
+void allOn()
+{
+ digitalWrite(2, HIGH);
+}
+void allOff()
+{
+ digitalWrite(2, LOW);
+}
+
+void setup() {
+  pinMode(2, OUTPUT);
+
+  Serial.begin(9600);
+  allOff();
+}
+
+void loop() {
+pinMode(sensor, INPUT);
+Serial.begin(9600);
+var=analogRead(sensor);
+Serial.print("valor:");
+Serial.println(var2);
+delay(20);
+
+
+
+var1= (var*0.160);
+var2= (var1 - 73);
+
+
+ if (Serial.available()) {
+
+    char rx_data=Serial.read();
+
+   switch (rx_data) {
+    case '1':
+      allOn();
+        break;
+      case 'A':
+      digitalWrite(2, HIGH);
+        break;
+   }
+
+    // out Off
+   switch (rx_data) {
+    case '0':
+      allOff();
+         break;
+    case 'a':
+      digitalWrite(2, LOW);
+      break;
+   }
+  }
+ }

@@ -1,0 +1,38 @@
+int sensor=0
+int var =0;
+int var1 =0;
+int var2= 0;
+int led=5;
+int led1=3;
+
+void setup() {
+pinMode(sensor, INPUT);
+pinMode(led, OUTPUT);
+pinMode(led1, OUTPUT);
+Serial.begin(9600);
+}
+
+void loop() {
+var=analogRead(sensor);
+Serial.print("valor:");
+Serial.println(var2);
+delay(20);
+
+var1= (var*0.160);
+var2= (var1 - 73);
+
+if (var2>30){
+  digitalWrite(led,LOW);
+  digitalWrite(led1,HIGH);
+}
+else 
+{
+  digitalWrite(led,LOW);
+  digitalWrite(led1,LOW);
+}
+if (var2<25){
+  digitalWrite(led,HIGH);
+  digitalWrite(led1,LOW);
+}
+
+}

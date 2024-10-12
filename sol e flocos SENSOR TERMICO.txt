@@ -1,0 +1,96 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+byte sol[8]={
+B00001,
+B00010,
+B00101,
+B01011,
+B01011,
+B00101,
+B00010,
+B00001,
+};
+byte sol2[8]={
+B10000,
+B01000,
+B10100,
+B11010,
+B11010,
+B10100,
+B01000,
+B10000,
+};
+byte floco[8]={
+B01001,
+B00101,
+B10011,
+B01110,
+B01110,
+B10011,
+B00101,
+B01001,
+};
+byte floco2[8]={
+B10010,
+B10100,
+B11001,
+B01110,
+B01110,
+B11001,
+B10100,
+B10010,
+};
+#include <DHT.h>
+#define DHTPIN A5
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
+
+int sensor=A0;
+int memoria;
+
+void setup() {
+
+  Serial.begin(9600);
+  pinMode(sensor, INPUT);
+  lcd.begin(16, 2);
+  lcd.setCursor(1, 0);
+  lcd.print(" SENAI,TOLEDO");
+  delay(200);
+  lcd.setCursor(5,1);
+  lcd.print("Sistemas");
+  delay(2500);
+  lcd.createChar(3 ,sol);
+  lcd.createChar(4 ,sol2);
+  lcd.createChar(5 ,floco);
+  lcd.createChar(6 ,floco2);
+  lcd.clear();
+}
+
+void loop() {
+float h = dht.readHumidity();
+float t = dht.readTemperature();
+
+ memoria=analogRead(sensor);
+
+  lcd.setCursor(0,1);
+ lcd.print("temp=");
+  lcd.setCursor(6,1);
+ lcd.print(t);
+ 
+   if  (t<27){
+  lcd.setCursor(14,0);
+ lcd.write(5);
+ lcd.setCursor(15,0);
+ lcd.write(6);
+ delay(500);
+lcd.clear();
+}
+else if (t>=27){
+  lcd.setCursor(0,0);
+ lcd.write(3);
+ lcd.setCursor(1,0);
+ lcd.write(4);
+delay(500);
+lcd.clear();
+}
+}
